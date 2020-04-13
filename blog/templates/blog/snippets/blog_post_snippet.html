@@ -5,13 +5,34 @@
 	.card-body{
 		padding: 20px;
 	}
+	.collapse-content .fa.fa-heart:hover {
+		color: #f44336 !important;
+	}
+	.collapse-content .fa.fa-share-alt:hover {
+		color: #0d47a1 !important;
+	}
 </style>
 
 <div class="container">
 	<div class="row">
 
 		<!-- Blog Post -->
-		<div class="card m-auto">
+		<div class="card card-outline card-primary m-auto">
+			<div class="card-footer text-muted">
+				<!-- Content -->
+				<div>
+				  <!-- Subtitle -->
+				  <p class="card-text">
+					<i class="fas fa-code pr-1"></i>post by {{blog_post.author}}. <i class="far fa-clock pr-1"></i>{{blog_post.date_updated}}
+					<!-- Button -->
+				<i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
+				<i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>	
+				</p>
+			
+				</div>
+				
+			</div>
+			  
 			<a href="{% url 'blog:detail' post.slug %}">
 				<img class="card-img-top" src="{{blog_post.image.url}}">
 			</a>
@@ -20,14 +41,16 @@
 				<a href="{% url 'blog:detail' post.slug %}">
 					<h2 class="card-title">{{blog_post.title}}</h2>
 				</a>
-				<p class="card-text">{{blog_post.body|safe|truncatechars:180}}</p>
+
+
+				<!-- Text -->
+				<p class="card-text">{{blog_post.body|safe|truncatechars:200}}</p>
+				
 				{% if blog_post.author == request.user %}
-					<a href="#" class="btn btn-primary">Update</a>
+					<a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
 				{% endif %}
 			</div>
-			<div class="card-footer text-muted">
-			  Updated on {{blog_post.date_updated}} by {{blog_post.author}}
-			</div>
+			
 		</div>
 	</div>
 </div>

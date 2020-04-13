@@ -1,0 +1,1 @@
+web: gunicorn CodingWithTrung.wsgi --log-file -

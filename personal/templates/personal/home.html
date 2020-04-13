@@ -26,26 +26,31 @@
   
     .left-column{
       padding:0px;
+      margin-top: 10px;
     }
   
     .right-column{
       padding:0px;
+      margin-top: 10px;
     }
     .lead{
-      font-size: 17px;
+      font-size: 16px;
     }
   </style>
   <div class="container">
     <div class="row">
-  
       <!-- blog feed -->
-      <div class="left-column col-lg-7 offset-lg-1">
+      <div class="left-column col-lg-8 offset-lg-1">
         <!-- Top 'create post' bar -->
         <div class="mb-3">
           <div class="card m-auto d-flex flex-column p-3">
             <img class="img-fluid d-block m-auto pb-2" src="{% static '/img/avatar04.png' %}" width="72" height="72">
-            <p class="lead">In this course you'll learn how to build a simple blog with user registration and blog CRUD functionality. Django is a powerful 
-                framework and you'll see why in this course.</p>
+            <p class="text-center">
+              Chào bạn đã đến với blog của mình.
+            </p>
+            <p class="text-center">
+              Blog chỉ để chia sẻ, tản mạn và viết linh tinh...
+            </p>
             <p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
           </div>
         </div>
@@ -62,13 +67,12 @@
       <!-- end blog feed -->
 
       <!-- Right 'create post' column  -->
-      <div class="right-column col-lg-3 d-lg-flex d-none flex-column">
+      <div class="right-column col-lg-2 d-lg-flex d-none flex-column">
   
-        <div class="card create-post-bar d-flex flex-column p-3">
-          <img class="img-fluid d-block m-auto pb-2" src="{% static '/img/avatar04.png' %}" width="72" height="72">
-          <p class="lead">In this course you'll learn how to build a simple blog with user registration and blog CRUD functionality. Django is a powerful 
-              framework and you'll see why in this course.</p>
-          <p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
+        <div class="card create-post-bar d-flex flex-column p-2">
+          <img class="img-fluid d-block m-auto pb-2" src="{% static '/img/avatar.png' %}" width="72" height="72">
+          <p class="lead text-center">Apps cập nhật giá cả và thời tiết đang building.</p>
+          <!-- <p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p> -->
         </div>
       
       </div>

@@ -31,6 +31,9 @@ class MyAccountManager(BaseUserManager):#extends BaseUserManager
 class Account(AbstractBaseUser): # extends AbstractBaseUser
     email = models.EmailField(verbose_name="email", max_length=254, unique=True)
     username = models.CharField(verbose_name="username", max_length=50, unique=True)
+    full_name = models.CharField(verbose_name="full name", max_length=100)
+    description = models.CharField(verbose_name="description", max_length=1000)
+    skills = models.CharField(verbose_name="skill", max_length=1000)
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now=True)
     last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
     is_admin = models.BooleanField(default=False)

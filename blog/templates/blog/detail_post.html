@@ -7,23 +7,25 @@
 <style type="text/css">
 	.card{
 		max-width: 700px;
+		margin-top: 10px;
 	}
 	.card-body{
 		padding: 20px;
 	}
+	
 </style>
 
 <div class="container">
 	<div class="row">
-
 		<!-- Blog Post -->
 		<div class="card m-auto">
+			<h3 class="text-center">{{blog_post.title}}</h3>
 			<img class="card-img-top" src="{{blog_post.image.url}}">
 			<div class="card-body mt-2 mb-2">
-			  <h2 class="card-title">{{blog_post.title}}</h2>
+			  
 			  <p class="card-text">{{blog_post.body|safe}}</p>
 			  {% if blog_post.author == request.user %}
-			  	<a href="#" class="btn btn-primary">Update</a>
+			  	<a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
 			  {% endif %}
 			</div>
 			<div class="card-footer text-muted">
