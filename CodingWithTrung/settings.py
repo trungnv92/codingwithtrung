@@ -27,7 +27,7 @@ DEBUG = True
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # During development only
     
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['codingwithtrung.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
