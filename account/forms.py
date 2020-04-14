@@ -15,6 +15,7 @@ class AccountAuthenticationForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ("email", "password")
+        
     
     def clean(self):
         email = self.cleaned_data['email']
