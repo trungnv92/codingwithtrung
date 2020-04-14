@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.generics import UpdateAPIView, GenericAPIView
+from rest_framework.generics import UpdateAPIView
+from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
 from account.api.serializers import RegistrationSerializer, ChangePasswordSerializer
 from rest_framework.authtoken.models import Token
@@ -23,27 +24,17 @@ def registration_view(request):
             data = serializer.errors
         return Response(data)
 
+        
+class ChangePasswordView(UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
 
-
-class ChangePasswordView(GenericAPIView):
-    #serializer_class = ChangePasswordSerializer()
-    permission_classes = (IsAuthenticated,)
-    def get_object(self, queryset=None):
-
-        return self.request.user
-    
-    def put(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        serializer = ChangePasswordSerializer(data=request.data)
-        if serializer.is_valid():
-            #check old pass
-            old_password = serializer.data.get("old_password")
-            
-            if not self.object.check_password(old_password):
-                return Response({"old_password a": "Wrong password."}, status=status.HTTP_400_BAD_REQUEST)
-            
-            #set_password new also hashes the password 
-            self.object.set_password(serializer.data.get['new_password'])
-            self.object.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        # if using drf authtoken, create a new token 
+        if hasattr(user, 'auth_token'):
+            user.auth_token.delete()
+        token, created = Token.objects.get_or_create(user=user)
+        # return new token
+        return Response({'token': token.key}, status=status.HTTP_200_OK)
