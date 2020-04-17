@@ -1,9 +1,6 @@
 {% load static %}
   <!-- Navbar -->
   <style type="text/css">
-    .margin-nav {
-      margin-bottom: 100px;
-    }
   </style>
   <nav class="main-header navbar navbar-expand-md navbar-primary navbar-dark margin-nav">
     <div class="container">
@@ -66,7 +63,7 @@
         </ul>
 
         <!-- SEARCH FORM -->
-        <form class="form-inline ml-0 ml-md-3">
+        <form class="form-inline ml-0 ml-md-4" method="POST">
           <div class="input-group input-group-sm">
             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
@@ -80,20 +77,18 @@
 
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-
         {% if request.user.is_authenticated %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'profile' %}">Hello, {{request.user.username}}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}" role="button"><i
-                class="fas fa-sign-out-alt"></i></a>
+            <a class="nav-link"  href="{% url 'logout' %}" role="button"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </li>
         
         {% else %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}" role="button"><i
-                class="fas fa-sign-in-alt"></i></a>
+                class="fas fa-sign-in-alt"></i>Login</a>
         </li>
         {% endif %}
       </ul>
