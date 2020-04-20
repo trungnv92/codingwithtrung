@@ -5,6 +5,8 @@ from django.utils.text import slugify
 from django.conf import settings
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 def upload_location(instance, filename):
     file_path = 'blog/{author_id}/{title}-{filename}'.format(author_id=str(instance.author_id), title=str(instance.title), filename=filename)
@@ -13,7 +15,8 @@ def upload_location(instance, filename):
 
 class BlogPost(models.Model):
     title = models.CharField(null=False, max_length=50, blank=False)
-    body = models.TextField(max_length=2000, null=False, blank=False)
+    #body = models.TextField(max_length=2000, null=False, blank=False)
+    content = RichTextUploadingField(blank=True, null=True)
     date_published = models.DateTimeField(auto_now_add=True, verbose_name="date published")
     image = models.ImageField(upload_to='blog', null=False, blank=True)
     date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated")

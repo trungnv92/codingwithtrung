@@ -6,4 +6,5 @@ urlpatterns = [
     path('create/', create_post_view, name='create'),
     path('<slug>/', detail_post_view, name='detail'),
     path('<slug>/edit', edit_post_view, name='edit'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

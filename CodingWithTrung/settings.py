@@ -44,8 +44,13 @@ INSTALLED_APPS = [
     'personal',
     'account',
     'blog',
+    'weather',
     'rest_framework',
     'rest_framework.authtoken',
+    #third_party app
+    'ckeditor',
+    'ckeditor_uploader',
+    
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -147,3 +152,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media_cdn")
 MEDIA_URL = '/media/'
 # edit
 AUTH_USER_MODEL = 'account.Account'
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'

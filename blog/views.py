@@ -16,7 +16,7 @@ def create_post_view(request):
         obj.author = account
         obj.save()
         form = CreateBlogPostForm()
-    context['create_post_form'] = form
+    context['form'] = form
     return render(request, 'blog/create_post.html', context)
 
 def detail_post_view(request, slug):

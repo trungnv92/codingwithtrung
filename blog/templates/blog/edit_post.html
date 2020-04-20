@@ -60,7 +60,6 @@
 			{% if success_message %}
 				<h3 style="color:green; text-align: center;">{{success_message}}</h3>
 			{% endif %}
-
 			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 
 				<!-- title -->
@@ -73,7 +72,7 @@
 				<div class="form-group">
 					<label for="id_body">Content</label>
 					<textarea class="form-control" rows="10" type="text" name="body" id="id_body" placeholder="This blog is about..." 
-					required>{{form.initial.body}}</textarea>
+					required>{{form.initial.body | safe}}</textarea>
 				</div>
 
 				<!-- Image -->
