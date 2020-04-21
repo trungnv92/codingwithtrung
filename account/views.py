@@ -8,11 +8,11 @@ def registration_view(request):
     if request.POST:
         form = RegistrationAccountForm(request.POST)
         if form.is_valid():
-            form.save()
+            account = form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email, password=raw_password)
-            login(request, account)
+            #account = authenticate(email=email, password=raw_password)
+            login(request, account, backend='django.contrib.auth.backends.ModelBackend')
             
             return redirect('home')
         else:
@@ -30,9 +30,11 @@ def login_view(request):
     if request.POST:
         form =  AccountAuthenticationForm(request.POST)
         if form.is_valid():
-            email = request.POST['email']
+            #email = request.POST['email']
+            phone = request.POST['phone']
             password = request.POST['password']
-            account = authenticate(email=email, password=password)
+            #account = authenticate(email=email, password=password)
+            account = authenticate(phone=phone, password=password)
             if account:
                 login(request, account)
                 return redirect('home')
