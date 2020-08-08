@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <style type="text/css">
+
+    @media (max-width: 768px) { 
+      .right-column{
+        margin-left: 0px;
+      }
+    }
+  
+    @media (min-width: 768px) { 
+      .right-column{
+        margin-left: 20px;
+      }
+    }
+  
+    .blog-post-container{
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .create-post-bar{
+      background-color: #fff;
+      margin-bottom:20px;
+    }
+  
+    .left-column{
+      padding:0px;
+      margin-top: 10px;
+      min-width: 770 ;
+    }
+  
+    .right-column{
+      padding:0px;
+      margin-top: 10px;
+    }
+    .lead{
+      font-size: 16px;
+    }
+  </style>
+  <div class="container">
+    
+    <div class="row">
+      <!-- blog feed -->
+      <div class="left-column col-lg-12">
+
+        <!-- Blog posts-->
+        {% for post in blog_posts %}
+        <div class="blog-post-container">
+          {% include 'blog/snippets/blog_post_snippet_rss.html' with blog_post=post %}
+        </div>
+        {% endfor %}
+        <!-- End Blog posts-->
+      
+      </div>
+      <!-- end blog feed -->
+    </div>
+    
+  </div>
+  
+{% endblock content %}
+    

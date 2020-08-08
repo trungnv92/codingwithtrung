@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     #third_party app
     'ckeditor',
     'ckeditor_uploader',
+    'captcha',
     
 ]
 REST_FRAMEWORK = {

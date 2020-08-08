@@ -3,12 +3,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from .models import Account
 from django.core.validators import RegexValidator
+from captcha.fields import CaptchaField
 
 class RegistrationAccountForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Bạn phải nhập địa chỉ email đúng định dạng')
+    captcha = CaptchaField()
     class Meta:
         model = Account
-        fields = ("email", "phone","username", "password1", "password2")
+        fields = ("email", "phone","username", "password1", "password2", "captcha")
 
 
 class AccountAuthenticationForm(forms.ModelForm):
